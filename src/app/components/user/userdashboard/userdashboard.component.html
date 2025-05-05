@@ -1,0 +1,32 @@
+<!-- user-dashboard.component.html -->
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-header bg-info text-white">
+      <h2>Welcome, {{ authService.currentUserValue?.username }}</h2>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-6 mb-4">
+          <div class="card h-100">
+            <div class="card-body text-center">
+              <i class="bi bi-book fs-1 text-primary"></i>
+              <h5 class="card-title mt-3">Browse Books</h5>
+              <p class="card-text">Find and borrow books from our collection</p>
+              <a routerLink="/user/books" class="btn btn-primary">Browse Books</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mb-4">
+          <div class="card h-100">
+            <div class="card-body text-center">
+              <i class="bi bi-clock-history fs-1 text-success"></i>
+              <h5 class="card-title mt-3">My Loans</h5>
+              <p class="card-text">View your current book loans</p>
+              <a routerLink="/user/loans" class="btn btn-success">View My Loans</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

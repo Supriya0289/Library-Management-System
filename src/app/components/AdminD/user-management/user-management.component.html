@@ -1,0 +1,64 @@
+<!-- user-management.component.html -->
+<div class="container mt-4">
+  <h2 class="mb-4">User Management</h2>
+  
+  <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+  <div *ngIf="isLoading" class="text-center">Loading users...</div>
+
+  <table *ngIf="!isLoading" class="table table-striped">
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>Role</th>
+        <th>Borrower Details</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.username }}</td>
+        <td>
+          <select class="form-select" [(ngModel)]="user.role" 
+                  (change)="updateRole(user.id, user.role)">
+            <option value="ADMIN">Admin</option>
+            <option value="USER">User</option>
+          </select>
+        </td>
+        <td>
+          <button (click)="toggleBorrowerDetails(user.id)" 
+                  class="btn btn-sm btn-info">
+            {{ expandedUserId === user.id ? 'Hide' : 'Show' }} Details
+          </button>
+        </td>
+        <td>
+          <button (click)="deleteUser(user.id)" 
+                  class="btn btn-sm btn-danger"
+                  [disabled]="user.id === authService.currentUserValue?.id">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Borrower Details Section -->
+  <div *ngFor="let user of users">
+    <div *ngIf="expandedUserId === user.id && user.borrower" class="card mb-3">
+      <div class="card-header">
+        <h5>Borrower Details for {{ user.username }}</h5>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <p><strong>Name:</strong> {{ user.borrower.name }}</p>
+            <p><strong>Email:</strong> {{ user.borrower.email }}</p>
+            <p><strong>Phone:</strong> {{ user.borrower.phone || 'Not provided' }}</p>
+          </div>
+          <div class="col-md-6">
+            <p><strong>Address:</strong> {{ user.borrower.address || 'Not provided' }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

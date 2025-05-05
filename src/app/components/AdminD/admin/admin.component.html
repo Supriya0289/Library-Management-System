@@ -1,0 +1,39 @@
+<!-- admin-dashboard.component.html -->
+<div class="container mt-4">
+  <h2 class="mb-4">Admin Dashboard</h2>
+  
+  <div class="row">
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        <div class="card-body text-center">
+          <i class="bi bi-book fs-1 text-primary"></i>
+          <h5 class="card-title mt-3">Manage Books</h5>
+          <p class="card-text">Add, edit or remove books from the library</p>
+          <a routerLink="/admin/books" class="btn btn-primary">Go to Books</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        <div class="card-body text-center">
+          <i class="bi bi-people fs-1 text-success"></i>
+          <h5 class="card-title mt-3">Manage Users</h5>
+          <p class="card-text">View and manage library users</p>
+          <a routerLink="/admin/users" class="btn btn-success">Go to Users</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        <div class="card-body text-center">
+          <i class="bi bi-clock-history fs-1 text-info"></i>
+          <h5 class="card-title mt-3">Manage Loans</h5>
+          <p class="card-text">View and manage all book loans</p>
+          <a routerLink="/admin/loans" class="btn btn-info">Go to Loans</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

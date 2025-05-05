@@ -1,0 +1,47 @@
+<!-- book-form.component.html -->
+<div class="container mt-4">
+    <h2>{{ isEdit ? 'Edit Book' : 'Add New Book' }}</h2>
+    
+    <form (ngSubmit)="onSubmit()" #bookForm="ngForm">
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" class="form-control" id="title" 
+               [(ngModel)]="book.title" name="title" required>
+      </div>
+      
+      <div class="mb-3">
+        <label for="author" class="form-label">Author</label>
+        <input type="text" class="form-control" id="author" 
+               [(ngModel)]="book.author" name="author" required>
+      </div>
+      
+      <div class="mb-3">
+        <label for="isbn" class="form-label">ISBN</label>
+        <input type="text" class="form-control" id="isbn" 
+               [(ngModel)]="book.isbn" name="isbn" required>
+      </div>
+      
+      <div class="mb-3">
+        <label for="availableCopies" class="form-label">Available Copies</label>
+        <input type="number" class="form-control" id="availableCopies" 
+               [(ngModel)]="book.availableCopies" name="availableCopies" required min="0">
+      </div>
+      
+      <div class="mb-3">
+        <label for="publishedYear" class="form-label">Published Year</label>
+        <input type="number" class="form-control" id="publishedYear" 
+               [(ngModel)]="book.publishedYear" name="publishedYear" required>
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <input type="text" class="form-control" id="description" 
+               [(ngModel)]="book.description" name="description" required>
+      </div>
+      <button type="submit" class="btn btn-primary me-2" [disabled]="!bookForm.form.valid">
+        {{ isEdit ? 'Update' : 'Save' }}
+      </button>
+      <button type="button" class="btn btn-secondary" (click)="router.navigate(['/admin/books'])">
+        Cancel
+      </button>
+    </form>
+  </div>

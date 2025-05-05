@@ -1,0 +1,46 @@
+<!-- admin-loan-list.component.html -->
+<div class="container mt-4">
+    <h2 class="mb-4">User Loans</h2>
+    
+    <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+    <div *ngIf="isLoading" class="text-center">Loading loans...</div>
+    
+    <div *ngIf="!isLoading && loans.length === 0" class="alert alert-info">
+      This user doesn't have any loans.
+    </div>
+    
+    <table *ngIf="!isLoading && loans.length > 0" class="table table-striped">
+      <thead>
+        <tr>
+          <th>Book</th>
+          <th>Checkout Date</th>
+          <th>Due Date</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let loan of loans">
+          <td>{{ loan.book.title }}</td>
+          <td>{{ loan.checkoutDate | date }}</td>
+          <td>{{ loan.dueDate | date }}</td>
+          <td>
+            <span [ngClass]="{
+              'badge bg-primary': loan.status === 'ACTIVE',
+              'badge bg-danger': loan.status === 'OVERDUE',
+              'badge bg-success': loan.status === 'RETURNED'
+            }">
+              {{ loan.status }}
+            </span>
+          </td>
+          <td>
+            <button *ngIf="loan.status !== 'RETURNED'" 
+                    (click)="returnBook(loan.id)" 
+                    class="btn btn-sm btn-success">
+              Mark Returned
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

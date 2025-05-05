@@ -1,0 +1,46 @@
+<div class="register-container">
+  <h2>Register</h2>
+  
+  <form (ngSubmit)="register()" #registerForm="ngForm">
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" 
+             [(ngModel)]="userData.username" required>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" 
+             [(ngModel)]="userData.password" required>
+    </div>
+
+    <div class="form-group">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" 
+             [(ngModel)]="userData.name" required>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" 
+             [(ngModel)]="userData.email" required>
+    </div>
+
+    <div *ngIf="error" class="error-message">
+      {{ error }}
+    </div>
+
+    <div *ngIf="success" class="success-message">
+      Registration successful! Redirecting to login...
+    </div>
+
+    <button type="submit" [disabled]="isLoading || registerForm.invalid">
+      <span *ngIf="!isLoading">Register</span>
+      <span *ngIf="isLoading">Processing...</span>
+    </button>
+
+    <p class="login-link">
+      Already have an account? <a routerLink="/login">Login here</a>
+    </p>
+  </form>
+</div>

@@ -1,0 +1,38 @@
+<!-- navbar.component.html -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/">Library System</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/books">Books</a>
+        </li>
+        <li class="nav-item" *ngIf="authService.isAdmin">
+          <a class="nav-link" routerLink="/borrowers">Borrowers</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/loans">Loans</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item" *ngIf="!authService.isAuthenticated">
+          <a class="nav-link" routerLink="/login">Login</a>
+        </li>
+        <li class="nav-item" *ngIf="!authService.isAuthenticated">
+          <a class="nav-link" routerLink="/register">Register</a>
+        </li>
+        <li class="nav-item" *ngIf="authService.isAuthenticated">
+          <a class="nav-link" [routerLink]="authService.isAdmin ? '/admin/dashboard' : '/user/dashboard'">
+            Dashboard
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="authService.isAuthenticated">
+          <a class="nav-link" (click)="authService.logout()" style="cursor: pointer;">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
